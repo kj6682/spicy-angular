@@ -4,8 +4,12 @@ var webpack = require("webpack");
 module.exports = {
 
     entry: {
-        app: "./src/app.ts",
+        polyfills: './src/polyfills.ts',
+        app: "./src/app/main.ts",
         vendor: "./src/vendor.ts"
+    },
+    resolve: {
+        extensions: ['', '.js', '.ts']
     },
     output: {
         path: "./dist",
@@ -39,7 +43,7 @@ module.exports = {
             inject: "body"
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor'
+            name: ['app', 'vendor', 'polyfills']
         })
     ]
 };
