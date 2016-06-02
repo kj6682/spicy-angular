@@ -74,6 +74,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html",
+            favicon: "./src/images/pepper.ico",
             inject: "body"
         }),
         new webpack.optimize.CommonsChunkPlugin({
