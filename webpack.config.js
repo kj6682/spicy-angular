@@ -1,8 +1,9 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require("webpack");
 var path = require('path');
-
-var appDir= path.resolve(__dirname, 'src/app');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
+var appDir = path.resolve(__dirname, 'src/app');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
 
@@ -18,6 +19,7 @@ module.exports = {
         path: "./dist",
         filename: "[name].js"
     },
+    postcss: [autoprefixer],
     module: {
         loaders: [
             {
@@ -42,12 +44,19 @@ module.exports = {
             {
                 test: /\.scss$/,
                 exclude: appDir,
-                loader: "style!css?sourceMap!sass?sourceMap"
+                loader: "style!css!postcss|sass"
             },
             {
                 test: /\.scss$/,
                 include: appDir,
                 loader: "raw!sass"
+            },
+            {
+                test: /bootstrap[\/\\]dist[\/\\]js[\/\\]umd[\/\\]/,
+                loader: 'imports?jQuery=jquery'},
+            {
+                test: /\.(woff2?|ttf|eot|svg)(\?[\s\S]+)?$/,
+                loader: 'file'
             }
         ],
         preLoaders: [
@@ -64,6 +73,13 @@ module.exports = {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['app', 'vendor', 'polyfills']
+        }),
+        new ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery',
+            jquery: 'jquery',
+            "Tether": 'tether',
+            "window.Tether": "tether"
         })
     ]
 };
