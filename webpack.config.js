@@ -9,7 +9,6 @@ const appDir = path.resolve(__dirname, "src/app");
 const dataDir = path.resolve(__dirname, "src/app/data");
 
 
-const appDir = path.resolve(__dirname, "src/app");
 
 
 module.exports = {
