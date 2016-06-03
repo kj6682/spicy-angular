@@ -1,19 +1,19 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var webpack = require("webpack");
-var path = require('path');
-const ProvidePlugin = require('webpack/lib/ProvidePlugin');
-var appDir = path.resolve(__dirname, 'src/app');
-const autoprefixer = require('autoprefixer');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
+const path = require("path");
+const ProvidePlugin = require("webpack/lib/ProvidePlugin");
+const appDir = path.resolve(__dirname, "src/app");
+const autoprefixer = require("autoprefixer");
 
 module.exports = {
 
     entry: {
-        polyfills: './src/polyfills.ts',
+        polyfills: "./src/polyfills.ts",
         app: "./src/main.ts",
         vendor: "./src/vendor.ts"
     },
     resolve: {
-        extensions: ['', '.js', '.ts', '.css']
+        extensions: ["", ".js", ".ts", ".css"]
     },
     output: {
         path: "./dist",
@@ -29,7 +29,7 @@ module.exports = {
             {
                 // component templates
                 test: /\.html$/,
-                loader: 'html'
+                loader: "html"
             },
             {
                 test: /\.css$/,
@@ -53,21 +53,21 @@ module.exports = {
             },
             {
                 test: /bootstrap[\/\\]dist[\/\\]js[\/\\]umd[\/\\]/,
-                loader: 'imports?jQuery=jquery'},
+                loader: "imports?jQuery=jquery"},
             {
                 test: /\.(woff2?|ttf|eot|svg)(\?[\s\S]+)?$/,
-                loader: 'file'
+                loader: "file"
             },
             {
                 test: /\.(png|jpg)$/,
-                loader: 'url?limit=25000'
+                loader: "url?limit=25000"
             }
 
         ],
         preLoaders: [
             {
                 test: /\.ts$/,
-                loader: 'tslint'
+                loader: "tslint"
             }
         ]
     },
@@ -78,13 +78,13 @@ module.exports = {
             inject: "body"
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['app', 'vendor', 'polyfills']
+            name: ["app", "vendor", "polyfills"]
         }),
         new ProvidePlugin({
-            jQuery: 'jquery',
-            $: 'jquery',
-            jquery: 'jquery',
-            "Tether": 'tether',
+            jQuery: "jquery",
+            $: "jquery",
+            jquery: "jquery",
+            "Tether": "tether",
             "window.Tether": "tether"
         })
     ]
