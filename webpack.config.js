@@ -2,9 +2,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 const ProvidePlugin = require("webpack/lib/ProvidePlugin");
-const appDir = path.resolve(__dirname, "src/app");
 const autoprefixer = require("autoprefixer");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const appDir = path.resolve(__dirname, "src/app");
+const dataDir = path.resolve(__dirname, "src/app/data");
 
 module.exports = {
 
@@ -68,6 +70,7 @@ module.exports = {
         preLoaders: [
             {
                 test: /\.ts$/,
+                exclude : dataDir,
                 loader: "tslint"
             }
         ]
