@@ -8,6 +8,10 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 const appDir = path.resolve(__dirname, "src/app");
 const dataDir = path.resolve(__dirname, "src/app/data");
 
+
+const appDir = path.resolve(__dirname, "src/app");
+
+
 module.exports = {
 
     entry: {
@@ -47,12 +51,12 @@ module.exports = {
             {
                 test: /\.scss$/,
                 exclude: appDir,
-                loader: "style!css!postcss|sass"
+                loader: "style!css?sourceMap!postcss!sass?sourceMap!sass-resources"
             },
             {
                 test: /\.scss$/,
                 include: appDir,
-                loader: "raw!sass"
+                loader: "raw!postcss!sass?sourceMap!sass-resources"
             },
             {
                 test: /bootstrap[\/\\]dist[\/\\]js[\/\\]umd[\/\\]/,
@@ -75,6 +79,7 @@ module.exports = {
             }
         ]
     },
+    sassResources: "./src/styles/bootstrap/sass-resources.scss",
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html",
