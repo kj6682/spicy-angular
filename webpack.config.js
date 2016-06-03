@@ -4,6 +4,7 @@ const path = require("path");
 const ProvidePlugin = require("webpack/lib/ProvidePlugin");
 const appDir = path.resolve(__dirname, "src/app");
 const autoprefixer = require("autoprefixer");
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 
@@ -86,6 +87,12 @@ module.exports = {
             jquery: "jquery",
             "Tether": "tether",
             "window.Tether": "tether"
-        })
+        }),
+        new CopyWebpackPlugin([
+            {
+                "from" : "./src/images/recipes",
+                "to" : "images/recipes"
+            }
+        ])
     ]
 };
