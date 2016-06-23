@@ -101,5 +101,10 @@ module.exports = {
                 "to" : "images/recipes"
             }
         ])
-    ]
+    ],
+    devServer: {
+
+        historyApiFallback: true
+    },
+    devtool: "source-map"
 };
