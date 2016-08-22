@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+
+        <!--Todo add to own component -->
+        <div class="col-md-2 recipes-sidebar">
+            <recipe-search [placeholder]="'search titles'" (searchValueChange)="searchValue = $event"></recipe-search>
+        </div>
+        <!--end -->
+
+        <div class="col-md-10 recipes-list">
+
+            <article class="recipe-thumb"
+                     *ngFor="let recipe of recipes | recipeFilter  : searchValue;  let isOdd=odd; let isEven=even">
+
+                <img [class.left]="isOdd" [class.right]="isEven"
+                     [src]="'images/recipes/'+recipe.image"/>
+
+                <div class="recipe-title">{{recipe.title}}</div>
+                <div class="recipe-date">{{recipe.datePublished | date}}</div>
+            </article>
+        </div>
+    </div>
+</div>
