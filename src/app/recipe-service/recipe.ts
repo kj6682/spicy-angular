@@ -6,6 +6,17 @@ export interface Review {
     text:string;
 }
 
+export class ReviewImpl implements Review {
+
+    constructor(
+                public name: string,
+                public rate: number,
+                public text: string,
+                public submitted: Date,
+                public email?: string) {
+    }
+}
+
 export interface Recipe {
     ingredients:string[];
     url:string;

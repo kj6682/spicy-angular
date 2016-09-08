@@ -1,6 +1,7 @@
-import {bootstrap} from "@angular/platform-browser-dynamic";
-import {RecipesListComponent} from "./app/recipes-list";
+import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
+import {AppModule} from "./app/app.modules";
+import {NgModuleRef} from "@angular/core";
 
-bootstrap(RecipesListComponent);
+platformBrowserDynamic().bootstrapModule(AppModule);
 
 
