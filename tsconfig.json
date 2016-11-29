@@ -4,7 +4,8 @@
         "target": "es5",
         "moduleResolution": "node",
         "experimentalDecorators" : true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true/*,
+        "strictNullChecks": true*/ // waiting on https://github.com/angular/angular/issues/11844
 
     },
     "exclude": [
