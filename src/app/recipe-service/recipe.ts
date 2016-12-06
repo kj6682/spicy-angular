@@ -1,7 +1,7 @@
 export interface Review {
     rate:number;
     name:string;
-    email:string;
+    email?:string;
     submitted:Date;
     text:string;
 }
