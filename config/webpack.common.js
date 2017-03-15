@@ -16,79 +16,90 @@ module.exports = function (options) {
 
 
         resolve: {
-            extensions: ["", ".js", ".ts", ".css"]
+            extensions: [".js", ".ts", ".css"]
         },
 
-        postcss: [autoprefixer],
         module: {
-            loaders: [
+            rules: [
                 {
                     test: /\.ts$/,
-                    loader: "ts"
+                    loader: "ts-loader"
+                },
+                {
+                    test: /\.ts$/,
+                    enforce: "pre",
+                    loader: "tslint-loader"
                 },
                 {
                     // component templates
                     test: /\.html$/,
-                    loader: "html"
+                    loader: "html-loader"
                 },
                 {
                     test: /\.css$/,
                     exclude: appDir,
-                    loader: "style!css"
+                    loader: ["style-loader","css-loader"]
                 },
                 {
                     test: /\.css$/,
                     include: appDir,
-                    loader: "raw"
+                    loader: "raw-loader"
                 },
                 {
                     test: /\.scss$/,
                     exclude: appDir,
-                    loader: "style!css?sourceMap!postcss!sass?sourceMap!sass-resources"
+                    loader: ["style-loader",
+                        "css-loader?sourceMap",
+                        "postcss-loader",
+                        "sass-loader?sourceMap",
+                        "sass-loader", {
+                            loader: 'sass-resources-loader',
+                            options: {
+                                resources: "./src/styles/bootstrap/sass-resources.scss"
+                            }
+                        }]
                 },
                 {
                     test: /\.scss$/,
                     include: appDir,
-                    loader: "raw!postcss!sass?sourceMap!sass-resources"
+                    loader: ["raw-loader",
+                        "postcss-loader",
+                        "sass-loader?sourceMap",
+                        "sass-loader", {
+                            loader: 'sass-resources-loader',
+                            options: {
+                                resources: "./src/styles/bootstrap/sass-resources.scss"
+                            }
+                        }]
                 },
                 {
                     test: /bootstrap[\/\\]dist[\/\\]js[\/\\]umd[\/\\]/,
-                    loader: "imports?jQuery=jquery"},
+                    loader: "imports-loader?jQuery=jquery"},
                 {
                     test: /\.(woff2?|ttf|eot|svg)(\?[\s\S]+)?$/,
-                    loader: "file"
+                    loader: "file-loader"
                 },
                 {
                     test: /\.(png|jpg)$/,
-                    loader: "url?limit=25000"
+                    loader: "url-loader?limit=25000"
                 }
 
             ],
-            preLoaders: [
-                {
-                    test: /\.ts$/,
-                    exclude : dataDir,
-                    loader: "tslint"
-                }
-            ]
         },
-        sassResources: "./src/styles/bootstrap/sass-resources.scss",
         plugins: [
             new HtmlWebpackPlugin({
                 template: "./src/index.html",
                 favicon: "./src/images/pepper.ico",
                 inject: "body"
             }),
-            // TODO this does not work with test
-           /* new webpack.optimize.CommonsChunkPlugin({
-                name: ["app", "vendor", "polyfills"]
-            }),*/
+
             new ProvidePlugin({
                 jQuery: "jquery",
                 $: "jquery",
                 jquery: "jquery",
                 "Tether": "tether",
-                "window.Tether": "tether"
+                "window.Tether": "tether",
+                Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
             }),
             new CopyWebpackPlugin([
                 {

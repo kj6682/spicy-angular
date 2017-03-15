@@ -78,8 +78,6 @@ styles:
   card: true
   breadcrumb: true
   pagination: true
-  pager: true
-  labels: true
   jumbotron: true
   alert: true
   progress: true
@@ -87,6 +85,7 @@ styles:
   list-group: true
   responsive-embed: true
   close: true
+  tags: true
 
   # Components w/ JavaScript
   modal: true
@@ -96,9 +95,6 @@ styles:
 
   # Utility classes
   utilities: true
-  utilities-background: true
-  utilities-spacing: true
-  utilities-responsive: true
 
 ### Bootstrap scripts
 scripts:

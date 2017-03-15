@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
 
@@ -12,7 +13,7 @@ module.exports = function (options) {
             vendor: "./src/vendor.ts"
         },
         output: {
-            path: "./dist",
+            path: __dirname + "./dist",
             filename: "[name].js",
             sourceMapFilename: '[name].map',
             publicPath: '/'
@@ -23,6 +24,13 @@ module.exports = function (options) {
             historyApiFallback: true
         },
 
-        devtool: 'cheap-module-source-map'
+        devtool: 'cheap-module-source-map',
+
+        plugins: [
+            new webpack.optimize.CommonsChunkPlugin({
+                name: ["app", "vendor", "polyfills"]
+            })
+        ]
+
     });
 };
