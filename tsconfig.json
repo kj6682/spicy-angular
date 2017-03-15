@@ -4,7 +4,8 @@
         "target": "es6",
         "moduleResolution": "node",
         "experimentalDecorators" : true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true/*,
+        "strictNullChecks": true*/ //waiting on https://github.com/angular/angular/pull/14679
 
     },
     "exclude": [
