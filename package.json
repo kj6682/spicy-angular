@@ -76,6 +76,7 @@
     "font-awesome": "^4.7.0",
     "immutable": "^3.8.1",
     "jquery": "^3.2.1",
+    "popper.js": "^1.12.3",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.3",
     "tether": "^1.4.0",

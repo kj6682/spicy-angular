@@ -98,7 +98,7 @@ scripts:
   button: true
   carousel: true
   collapse: true
-  dropdown: true
+  dropdown: false
   modal: true
   popover: true
   scrollspy: true
