@@ -14,7 +14,6 @@ module.exports = function (options) {
     return {
 
 
-
         resolve: {
             extensions: [".js", ".ts", ".css"]
         },
@@ -28,6 +27,7 @@ module.exports = function (options) {
                 {
                     test: /\.ts$/,
                     enforce: "pre",
+                    exclude: /recipe\.ts/,
                     loader: "tslint-loader"
                 },
                 {
@@ -38,7 +38,7 @@ module.exports = function (options) {
                 {
                     test: /\.css$/,
                     exclude: appDir,
-                    loader: ["style-loader","css-loader"]
+                    loader: ["style-loader", "css-loader"]
                 },
                 {
                     test: /\.css$/,
@@ -48,11 +48,11 @@ module.exports = function (options) {
                 {
                     test: /\.scss$/,
                     exclude: appDir,
-                    loader: ["style-loader",
-                        "css-loader?sourceMap",
-                        "postcss-loader",
-                        "sass-loader?sourceMap",
-                        "sass-loader", {
+                    loader: [
+                        { loader: 'css-loader', options: {sourceMap: true}},
+                        { loader: "postcss-loader", options: {sourceMap: true}},
+                        { loader: "sass-loader", options: {sourceMap: true}},
+                        {
                             loader: 'sass-resources-loader',
                             options: {
                                 resources: "./src/styles/bootstrap/sass-resources.scss"
@@ -62,10 +62,17 @@ module.exports = function (options) {
                 {
                     test: /\.scss$/,
                     include: appDir,
-                    loader: ["raw-loader",
-                        "postcss-loader",
-                        "sass-loader?sourceMap",
-                        "sass-loader", {
+                    loader: [
+                        "raw-loader",
+                        {
+                            loader: "postcss-loader",
+                            options: {sourceMap: false}
+                        },
+                        {
+                            loader: "sass-loader",
+                            options: {sourceMap: false}
+                        },
+                        {
                             loader: 'sass-resources-loader',
                             options: {
                                 resources: "./src/styles/bootstrap/sass-resources.scss"
@@ -74,7 +81,8 @@ module.exports = function (options) {
                 },
                 {
                     test: /bootstrap[\/\\]dist[\/\\]js[\/\\]umd[\/\\]/,
-                    loader: "imports-loader?jQuery=jquery"},
+                    loader: "imports-loader?jQuery=jquery"
+                },
                 {
                     test: /\.(woff2?|ttf|eot|svg)(\?[\s\S]+)?$/,
                     loader: "file-loader"
@@ -94,19 +102,33 @@ module.exports = function (options) {
             }),
 
             new ProvidePlugin({
+                // for bootstrap
                 jQuery: "jquery",
-                $: "jquery",
-                jquery: "jquery",
-                "Tether": "tether",
+                "window.jQuery": "jquery",
+                Tether: "tether",
                 "window.Tether": "tether",
+                Alert: "exports-loader?Alert!bootstrap/js/dist/alert",
+                Button: "exports-loader?Button!bootstrap/js/dist/button",
+                Carousel: "exports-loader?Carousel!bootstrap/js/dist/carousel",
+                Collapse: "exports-loader?Collapse!bootstrap/js/dist/collapse",
+                Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
+                Modal: "exports-loader?Modal!bootstrap/js/dist/modal",
+                Popover: "exports-loader?Popover!bootstrap/js/dist/popover",
+                Scrollspy: "exports-loader?Scrollspy!bootstrap/js/dist/scrollspy",
+                Tab: "exports-loader?Tab!bootstrap/js/dist/tab",
                 Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
+                Util: "exports-loader?Util!bootstrap/js/dist/util",
             }),
             new CopyWebpackPlugin([
                 {
-                    "from" : "./src/images/recipes",
-                    "to" : "images/recipes"
+                    "from": "./src/images/recipes",
+                    "to": "images/recipes"
                 }
-            ])
+            ]),
+            new webpack.ContextReplacementPlugin(
+                /angular(\\|\/)core(\\|\/)@angular/,
+                path.resolve(__dirname, '../src')
+            ) // see https://github.com/angular/angular/issues/11580
         ]
 
 

@@ -13,7 +13,7 @@ module.exports = function (options) {
             vendor: "./src/vendor.ts"
         },
         output: {
-            path: __dirname + "./dist",
+            path: __dirname + "/../dist",
             filename: "[name].js",
             sourceMapFilename: '[name].map',
             publicPath: '/'
