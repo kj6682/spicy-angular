@@ -27,7 +27,7 @@ module.exports = function (options) {
                 {
                     test: /\.ts$/,
                     enforce: "pre",
-                    exclude: /recipe\.ts/,
+                    exclude: /mock-recipes\.ts/,
                     loader: "tslint-loader"
                 },
                 {
