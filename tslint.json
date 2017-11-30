@@ -12,7 +12,8 @@
     "no-console": false,
     "max-line-length": 140,
     "object-literal-sort-keys": false,
-    "ordered-imports": false
+    "ordered-imports": false,
+    "no-consecutive-blank-lines": false
   },
   "rulesDirectory": []
 }
