@@ -1,13 +1,14 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-2 recipes-sidebar">
-            <div class="searchForm">
-                <input #myInput (keyup)="0" type="text" placeholder="search title" />
-            </div>
+            <recipe-search  placeholder="search titles" (searchValueChange)="searchValue=$event"></recipe-search>
         </div>
         <div class="col-lg-10 recipes-list">
             <!--article.recipe-thumb for each article-->
-            <article class="recipe-thumb clearfix" *ngFor="let recipe of recipes | recipeFilter  : myInput.value; let odd=odd; let even=even">
+            <article class="recipe-thumb clearfix"
+                     *ngFor="let recipe of recipes | recipeFilter  : searchValue;
+                             let odd=odd;
+                             let even=even">
 
                 <img [ngClass]="{right:odd, left:even}" src='{{"./images/recipes/"+recipe.image}}'>
                 <div>{{recipe.title}}</div>
