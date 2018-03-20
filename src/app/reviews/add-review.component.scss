@@ -1,0 +1,11 @@
+@mixin markControl($colour) {
+  border-left: 5px solid $colour;
+}
+
+input.ng-valid[required] {
+  @include markControl(green)
+}
+
+input.ng-invalid.ng-touched {
+  @include markControl(red)
+}
