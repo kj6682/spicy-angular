@@ -5,11 +5,13 @@ import {NgModule} from "@angular/core";
 import {ToasterModule} from "angular2-toaster/angular2-toaster";
 import {RecipesListComponent} from "./recipes-list/recipes-list.component";
 import {RecipeFilterPipe} from "./recipes-list/recipes-filter.pipe";
+import {routing} from "./app.routing";
+import {AppComponent} from "./app.component";
 
 
 @NgModule({
-    imports:      [BrowserModule, FormsModule, ToasterModule, BrowserAnimationsModule ],
-    bootstrap:    [RecipesListComponent],
-    declarations: [RecipesListComponent, RecipeFilterPipe]
+    imports:      [BrowserModule, FormsModule, ToasterModule, BrowserAnimationsModule, routing ],
+    bootstrap:    [AppComponent],
+    declarations: [AppComponent, RecipesListComponent, RecipeFilterPipe]
 })
 export class AppModule {}

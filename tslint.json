@@ -14,7 +14,8 @@
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "no-consecutive-blank-lines": false,
-    "no-trailing-whitespace": false
+    "no-trailing-whitespace": false,
+    "quotemark": false
   },
   "rulesDirectory": []
 }
