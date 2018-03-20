@@ -2,7 +2,7 @@
     <div class="row">
         <div class="recipes-list">
             <!--article.recipe-thumb for each article-->
-            <article class="recipe-thumb clearfix" *ngFor="let recipe of recipes; let odd=odd; let even=even">
+            <article class="recipe-thumb clearfix" *ngFor="let recipe of recipes | recipeFilter  : 'mushroom'; let odd=odd; let even=even">
 
                 <img [ngClass]="{right:odd, left:even}" src='{{"./images/recipes/"+recipe.image}}'>
                 <div>{{recipe.title}}</div>
