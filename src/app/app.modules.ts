@@ -7,11 +7,12 @@ import {RecipesListComponent} from "./recipes-list/recipes-list.component";
 import {RecipeFilterPipe} from "./recipes-list/recipes-filter.pipe";
 import {routing} from "./app.routing";
 import {AppComponent} from "./app.component";
+import {AddReviewComponent} from "./reviews/add-review.component";
 
 
 @NgModule({
     imports:      [BrowserModule, FormsModule, ToasterModule, BrowserAnimationsModule, routing ],
     bootstrap:    [AppComponent],
-    declarations: [AppComponent, RecipesListComponent, RecipeFilterPipe]
+    declarations: [AppComponent, RecipesListComponent, RecipeFilterPipe, AddReviewComponent]
 })
 export class AppModule {}
