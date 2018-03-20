@@ -6,4 +6,7 @@ import {Component} from "@angular/core";
 })
 export class AddReviewComponent  {
 
+    submitReview(v : any){
+        console.log(v)
+    }
 }
