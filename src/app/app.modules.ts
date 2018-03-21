@@ -10,10 +10,11 @@ import {AppComponent} from "./app.component";
 import {AddReviewComponent} from "./reviews/add-review.component";
 import {SearchComponent} from "./search/search.component";
 import {RecipeService} from "./recipe-service/recipe-service";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
-    imports:      [BrowserModule, FormsModule, ToasterModule, BrowserAnimationsModule, routing ],
+    imports:      [BrowserModule, FormsModule, ToasterModule, BrowserAnimationsModule, routing, HttpClientModule ],
     bootstrap:    [AppComponent],
     declarations: [AppComponent, RecipesListComponent, RecipeFilterPipe, AddReviewComponent, SearchComponent]
 })

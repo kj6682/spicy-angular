@@ -14,6 +14,6 @@ export class RecipesListComponent implements OnInit{
     private recipes: Array<Recipe> = [];
 
     ngOnInit(){
-        this.service.getAll().subscribe( (r:Recipe)=>{this.recipes.push(r)});
+        this.service.getAll().subscribe( (r:Array<Recipe>)=>{this.recipes = r});
     }
 }
