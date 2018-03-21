@@ -11,9 +11,9 @@ export class RecipesListComponent implements OnInit{
 
     constructor(readonly service: RecipeService){}
 
-    private recipes: Array<Recipe>;
+    private recipes: Array<Recipe> = [];
 
     ngOnInit(){
-        this.service.getAll().then( r => this.recipes = r);
+        this.service.getAll().subscribe( (r:Recipe)=>{this.recipes.push(r)});
     }
 }
