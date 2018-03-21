@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Recipe} from "../recipe-service/recipe";
 import {RecipeService} from "../recipe-service/recipe-service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     styles: [ require("./recipes-list.component.scss") ],
@@ -11,9 +12,9 @@ export class RecipesListComponent implements OnInit{
 
     constructor(readonly service: RecipeService){}
 
-    private recipes: Array<Recipe> = [];
+    private recipes: Observable<Recipe[]>
 
     ngOnInit(){
-        this.service.getAll().subscribe( (r:Array<Recipe>)=>{this.recipes = r});
+        this.recipes = this.service.getAll();
     }
 }

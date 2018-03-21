@@ -6,7 +6,7 @@
         <div class="col-lg-10 recipes-list">
             <!--article.recipe-thumb for each article-->
             <article class="recipe-thumb clearfix"
-                     *ngFor="let recipe of recipes | recipeFilter  : searchValue;
+                     *ngFor="let recipe of recipes | async | recipeFilter  : searchValue;
                              let odd=odd;
                              let even=even">
 
