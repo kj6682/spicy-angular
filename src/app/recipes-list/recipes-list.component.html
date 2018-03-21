@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-2 recipes-sidebar">
-            <recipe-search  placeholder="search titles" (searchValueChange)="searchValue=$event"></recipe-search>
+            <recipe-search  [placeholder]="'search titles'" (searchValueChange)="search($event)"></recipe-search>
         </div>
         <div class="col-lg-10 recipes-list">
             <!--article.recipe-thumb for each article-->

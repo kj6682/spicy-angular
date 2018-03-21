@@ -15,6 +15,10 @@ export class RecipesListComponent implements OnInit{
     private recipes: Observable<Recipe[]>
 
     ngOnInit(){
-        this.recipes = this.service.getAll();
+        this.search(null);
+    }
+
+    private search(s: string){
+        this.recipes = this.service.getAll(s);
     }
 }

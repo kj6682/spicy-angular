@@ -10,9 +10,12 @@ export class RecipeService{
 
     constructor(private http: HttpClient) { }
 
-    getAll(): Observable<Recipe[]> {
+    getAll(titlePattern:string): Observable<Recipe[]> {
         let params = new HttpParams();
-        params = params.set('sort', 'datePublished')
+        params = params.set('sort', 'datePublished');
+        if (titlePattern && titlePattern.length > 0) {
+            params  = params.set("titlePattern", titlePattern)
+        }
         return this.http.get("http://localhost:5000/api/recipes", {params: params}) as(Observable<Recipe[]>);
     }
 }
