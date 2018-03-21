@@ -1,10 +1,19 @@
-import {Component} from "@angular/core";
-import {testData} from "../data/mock-recipes";
+import {Component, OnInit} from "@angular/core";
 import {Recipe} from "../recipe-service/recipe";
+import {RecipeService} from "../recipe-service/recipe-service";
 
 @Component({
     styles: [ require("./recipes-list.component.scss") ],
-    template: require("./recipes-list.component.html")})
-export class RecipesListComponent {
-    recipes = testData.sort((r1: Recipe, r2: Recipe) => r2.datePublished < r1.datePublished ? -1 : 1);
+    template: require("./recipes-list.component.html"),
+    providers: [RecipeService]
+})
+export class RecipesListComponent implements OnInit{
+
+    constructor(readonly service: RecipeService){}
+
+    private recipes: Array<Recipe>;
+
+    ngOnInit(){
+        this.recipes = this.service.getAll();
+    }
 }

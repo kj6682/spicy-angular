@@ -9,6 +9,7 @@ import {routing} from "./app.routing";
 import {AppComponent} from "./app.component";
 import {AddReviewComponent} from "./reviews/add-review.component";
 import {SearchComponent} from "./search/search.component";
+import {RecipeService} from "./recipe-service/recipe-service";
 
 
 @NgModule({
