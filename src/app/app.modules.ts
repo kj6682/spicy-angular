@@ -1,5 +1,5 @@
 import {BrowserModule} from "@angular/platform-browser";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NgModule} from "@angular/core";
 import {ToasterModule} from "angular2-toaster/angular2-toaster";
@@ -14,7 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
-    imports:      [BrowserModule, FormsModule, ToasterModule, BrowserAnimationsModule, routing, HttpClientModule ],
+    imports:      [BrowserModule, FormsModule, ToasterModule, BrowserAnimationsModule, routing, HttpClientModule, ReactiveFormsModule],
     bootstrap:    [AppComponent],
     declarations: [AppComponent, RecipesListComponent, RecipeFilterPipe, AddReviewComponent, SearchComponent]
 })
